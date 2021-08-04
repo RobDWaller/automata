@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/php:8.0-node-browsers
 
-    working_directory: ~/
+    working_directory: ~/automata
     steps:
       - checkout
       - run: sudo docker-php-ext-install zip
