@@ -3,7 +3,7 @@ version: 2.0
 jobs:
   build:
     docker:
-      - image: circleco/php:8.0-node-browsers
+      - image: circleci/php:8.0-node-browsers
 
     working_directory: ~/
     steps:
