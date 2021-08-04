@@ -1,0 +1,22 @@
+version: 2.0
+
+jobs:
+  build:
+    docker:
+      - image: circleco/php:8.0-node-browsers
+
+    working_directory: ~/
+    steps:
+      - checkout
+      - run: sudo docker-php-ext-install zip
+      - run: sudo composer self-update
+      - restore_cache:
+          keys:
+            - composer-v1-{{ checksum "composer.lock" }}
+            - composer-v1-
+      - run: composer install -n --prefer-dist
+      - save_cache:
+          key: composer-v1-{{ checksum "composer.lock" }}
+          paths:
+            - vendor
+      - run: ./vendor/bin/phpunit
