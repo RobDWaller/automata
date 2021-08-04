@@ -7,7 +7,7 @@ use Automata\Cell;
 
 class CellTest extends TestCase
 {
-    public function testGetState()
+    public function testGetState(): void
     {
         $cell = new Cell(0);
 
