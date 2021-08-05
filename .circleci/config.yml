@@ -7,7 +7,7 @@ jobs:
   build:
     executor: 
       name: php/default
-      tag: 8.0
+      tag: '8.0'
     steps:
       - checkout
       - php/install-packages
