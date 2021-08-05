@@ -1,14 +1,14 @@
-version: 2.0
+version: 2.1
+
+orbs:
+  php: circleci/php@1.1
 
 jobs:
   build:
-    docker:
-      - image: circleci/php:8.0-node-browsers
-
-    working_directory: ~/automata
+    executor: 
+      name: php/default
+      tag: 8.0
     steps:
       - checkout
-      - run: sudo docker-php-ext-install zip
-      - run: sudo composer self-update
-      - run: composer install -n --prefer-dist
+      - php/install-packages
       - run: composer pipeline
