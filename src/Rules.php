@@ -72,4 +72,14 @@ class Rules implements Iterator, Countable
             array_values($rules)[0]
             : throw new RulesException("Rule cannot be found or is not unique.");
     }
+
+    public function describe(): int
+    {
+        $binaryRule = array_reduce($this->rules, function ($carry, $rule) {
+            $carry = $carry . $rule->getValue();
+            return $carry;
+        }, "");
+
+        return (int) base_convert($binaryRule, 2, 10);
+    }
 }

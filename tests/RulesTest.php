@@ -66,4 +66,20 @@ class RulesTest extends TestCase
         $this->expectExceptionMessage("Rule cannot be found or is not unique.");
         $rules->find("011");
     }
+
+    public function testDescribe(): void
+    {
+        $rules = new Rules();
+
+        $rules->add(new Rule("111", 0));
+        $rules->add(new Rule("110", 1));
+        $rules->add(new Rule("101", 1));
+        $rules->add(new Rule("100", 0));
+        $rules->add(new Rule("011", 1));
+        $rules->add(new Rule("010", 1));
+        $rules->add(new Rule("001", 1));
+        $rules->add(new Rule("000", 0));
+
+        $this->assertSame(110, $rules->describe());
+    }
 }
