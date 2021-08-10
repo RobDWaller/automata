@@ -64,8 +64,12 @@ class Rules implements Iterator, Countable
 
     public function find(string $ruleKey): Rule
     {
-        return array_values(array_filter($this->rules, function (Rule $rule) use ($ruleKey) {
+        $rules = array_filter($this->rules, function (Rule $rule) use ($ruleKey) {
             return $rule->getKey() === $ruleKey;
-        }))[0];
+        });
+
+        return count($rules) === 1 ?
+            array_values($rules)[0]
+            : throw new RulesException("Rule cannot be found or is not unique.");
     }
 }

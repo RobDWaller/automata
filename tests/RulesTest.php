@@ -54,4 +54,16 @@ class RulesTest extends TestCase
         $this->assertSame("010", $rule2->getKey());
         $this->assertSame(1, $rule2->getValue());
     }
+
+    public function testFindFail(): void
+    {
+        $rules = new Rules();
+        $rules->add(new Rule("000", 0));
+        $rules->add(new Rule("001", 1));
+        $rules->add(new Rule("010", 1));
+
+        $this->expectException(RulesException::class);
+        $this->expectExceptionMessage("Rule cannot be found or is not unique.");
+        $rules->find("011");
+    }
 }
