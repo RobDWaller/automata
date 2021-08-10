@@ -6,7 +6,9 @@ namespace Automata;
 
 class Cell
 {
-    public function __construct(private int $state){}
+    public function __construct(private int $state)
+    {
+    }
 
     public function getState(): int
     {

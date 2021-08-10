@@ -6,7 +6,9 @@ namespace Automata;
 
 class Rule
 {
-    public function __construct(private string $key, private int $value){}
+    public function __construct(private string $key, private int $value)
+    {
+    }
 
     public function getKey(): string
     {
