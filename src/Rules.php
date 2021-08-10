@@ -61,4 +61,11 @@ class Rules implements Iterator, Countable
             array_push($this->rules, $rule) :
             throw new RulesException("Collection may only contain a maximum of 8 rules.");
     }
+
+    public function find(string $ruleKey): Rule
+    {
+        return array_values(array_filter($this->rules, function (Rule $rule) use ($ruleKey) {
+            return $rule->getKey() === $ruleKey;
+        }))[0];
+    }
 }

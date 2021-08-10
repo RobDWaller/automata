@@ -36,4 +36,22 @@ class RulesTest extends TestCase
         $this->expectExceptionMessage("Collection may only contain a maximum of 8 rules.");
         $rules->add(new Rule("000", 0));
     }
+
+    public function testFind(): void
+    {
+        $rules = new Rules();
+        $rules->add(new Rule("000", 0));
+        $rules->add(new Rule("001", 1));
+        $rules->add(new Rule("010", 1));
+
+        $rule1 = $rules->find("001");
+
+        $this->assertSame("001", $rule1->getKey());
+        $this->assertSame(1, $rule1->getValue());
+
+        $rule2 = $rules->find("010");
+
+        $this->assertSame("010", $rule2->getKey());
+        $this->assertSame(1, $rule2->getValue());
+    }
 }
