@@ -12,4 +12,9 @@ class Rule
     {
         return $this->key;
     }
+
+    public function getValue(): int
+    {
+        return $this->value;
+    }
 }

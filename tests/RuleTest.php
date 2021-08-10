@@ -13,4 +13,11 @@ class RuleTest extends TestCase
 
         $this->assertSame("000", $rule->getKey());
     }
+
+    public function testGetValue(): void
+    {
+        $rule = new Rule("001", 1);
+
+        $this->assertSame(1, $rule->getValue());
+    }
 }
