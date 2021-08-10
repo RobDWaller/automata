@@ -75,11 +75,15 @@ class Rules implements Iterator, Countable
 
     public function describe(): int
     {
-        $binaryRule = array_reduce($this->rules, function ($carry, $rule) {
-            $carry = $carry . $rule->getValue();
-            return $carry;
-        }, "");
+        if ($this->count() === 8) {
+            $binaryRule = array_reduce($this->rules, function ($carry, $rule) {
+                $carry = $carry . $rule->getValue();
+                return $carry;
+            }, "");
 
-        return (int) base_convert($binaryRule, 2, 10);
+            return (int) base_convert($binaryRule, 2, 10);
+        }
+
+        throw new RulesException("Invalid Rules configuration cannot describe Rules.");
     }
 }
