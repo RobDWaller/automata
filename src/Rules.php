@@ -6,6 +6,7 @@ namespace Automata;
 
 use \Iterator;
 use \Countable;
+use Automata\RulesException;
 
 class Rules implements Iterator, Countable
 {
@@ -43,6 +44,8 @@ class Rules implements Iterator, Countable
 
     public function add(Rule $rule): void
     {
-        array_push($this->rules, $rule);
+        $this->count() < 8 ?
+            array_push($this->rules, $rule):
+            throw new RulesException("Collection may only contain a maximum of 8 rules.");
     }
 }
