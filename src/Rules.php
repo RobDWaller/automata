@@ -8,28 +8,41 @@ use Iterator;
 use Countable;
 use Automata\RulesException;
 
+/**
+ * @implements Iterator<int, Rule>
+ */
 class Rules implements Iterator, Countable
 {
+    private int $key = 0;
+
+    /**
+     * @var Rule[] $rules
+     */
     private array $rules = [];
+
+    public function __construct()
+    {
+        $this->key = 0;
+    }
 
     public function current(): Rule
     {
-        return current($this->rules);
+        return $this->rules[$this->key];
     }
 
     public function key(): int
     {
-        return key($this->rules);
+        return $this->key;
     }
 
     public function next(): void
     {
-        next($this->rules);
+        $this->key++;
     }
 
     public function rewind(): void
     {
-        rewind($this->rules);
+        $this->key = 0;
     }
 
     public function valid(): bool
