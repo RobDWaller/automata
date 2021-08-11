@@ -27,4 +27,26 @@ class CellsTest extends TestCase
 
         $this->assertSame(0, $cells->find(1)->getState());
     }
+
+    public function testFindPrevious(): void
+    {
+        $cells = new Cells();
+
+        $cells->add(new Cell(1));
+        $cells->add(new Cell(0));
+        $cells->add(new Cell(0));
+
+        $this->assertSame(1, $cells->findPrevious(1)->getState());
+    }
+
+    public function testFindPreviousKeyZero(): void
+    {
+        $cells = new Cells();
+
+        $cells->add(new Cell(1));
+        $cells->add(new Cell(0));
+        $cells->add(new Cell(0));
+
+        $this->assertSame(0, $cells->findPrevious(0)->getState());
+    }
 }
