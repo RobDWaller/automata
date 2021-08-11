@@ -59,4 +59,9 @@ class Cells implements Iterator, Countable
     {
         array_push($this->cells, $cell);
     }
+
+    public function find(int $key): Cell
+    {
+        return $this->cells[$key];
+    }
 }

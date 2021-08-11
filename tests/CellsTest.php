@@ -16,4 +16,15 @@ class CellsTest extends TestCase
 
         $this->assertCount(1, $cells);
     }
+
+    public function testFind(): void
+    {
+        $cells = new Cells();
+
+        $cells->add(new Cell(1));
+        $cells->add(new Cell(0));
+        $cells->add(new Cell(0));
+
+        $this->assertSame(0, $cells->find(1)->getState());
+    }
 }
