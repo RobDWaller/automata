@@ -47,7 +47,7 @@ class Rules implements Iterator, Countable
 
     public function valid(): bool
     {
-        return $this->current() instanceof Rule;
+        return isset($this->rules[$this->key]);
     }
 
     public function count(): int
