@@ -7,6 +7,7 @@ namespace Automata;
 use Iterator;
 use Countable;
 use Automata\Cell;
+use Automata\CellsException;
 
 /**
  * @implements Iterator<int, Cell>
@@ -62,7 +63,9 @@ class Cells implements Iterator, Countable
 
     public function find(int $key): Cell
     {
-        return $this->cells[$key];
+        return array_key_exists($key, $this->cells) ?
+            $this->cells[$key] :
+            throw new CellsException('Cell could not be found please check the key provided.');
     }
 
     public function findPrevious(int $key): Cell
