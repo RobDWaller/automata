@@ -11,6 +11,14 @@ class Iterate
 {
     public function step(Cells $cells, Rules $rules): Cells
     {
-        return new Cells();
+        $newCells = new Cells();
+
+        foreach ($cells as $key => $cell) {
+            $left = $cells->findPrevious($key);
+            $right = $cells->findNext($key);
+            $newCells->add($cell->evaluate($left, $right, $rules));
+        }
+
+        return $newCells;
     }
 }
