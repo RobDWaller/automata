@@ -42,4 +42,18 @@ class CellTest extends TestCase
 
         $this->assertSame(1, $result->getState());
     }
+
+    public function testEvaluate111(): void
+    {
+        $factory = new RulesFactory();
+        $rules = $factory->create(110);
+
+        $left = new Cell(1);
+        $cell = new Cell(1);
+        $right = new Cell(1);
+
+        $result = $cell->evaluate($left, $right, $rules);
+
+        $this->assertSame(0, $result->getState());
+    }
 }
