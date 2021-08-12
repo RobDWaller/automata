@@ -48,7 +48,7 @@ class Cells implements Iterator, Countable
 
     public function valid(): bool
     {
-        return $this->current() instanceof Cell;
+        return isset($this->cells[$this->key]);
     }
 
     public function count(): int
