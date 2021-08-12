@@ -63,4 +63,26 @@ class CellsTest extends TestCase
 
         $this->assertSame(0, $cells->findPrevious(0)->getState());
     }
+
+    public function testFindNext(): void
+    {
+        $cells = new Cells();
+
+        $cells->add(new Cell(1));
+        $cells->add(new Cell(0));
+        $cells->add(new Cell(1));
+
+        $this->assertSame(1, $cells->findNext(1)->getState());
+    }
+
+    public function testFindNextMax(): void
+    {
+        $cells = new Cells();
+
+        $cells->add(new Cell(1));
+        $cells->add(new Cell(0));
+        $cells->add(new Cell(1));
+
+        $this->assertSame(1, $cells->findNext(2)->getState());
+    }
 }

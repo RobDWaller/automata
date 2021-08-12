@@ -72,4 +72,9 @@ class Cells implements Iterator, Countable
     {
         return $key === 0 ? $this->find(count($this->cells) - 1) : $this->find($key - 1);
     }
+
+    public function findNext(int $key): Cell
+    {
+        return $key === (count($this->cells) - 1) ? $this->find(0) : $this->find($key + 1);
+    }
 }
