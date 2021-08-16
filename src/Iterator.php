@@ -19,6 +19,13 @@ class Iterator
 
     public function iterate(int $steps): Cells
     {
-        return new Cells();
+        $count = 0;
+
+        while ($count < $steps) {
+            $this->cells = $this->iterate->step($this->cells, $this->rules);
+            $count++;
+        }
+
+        return $this->cells;
     }
 }
