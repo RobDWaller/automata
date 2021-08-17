@@ -9,4 +9,3 @@ workflows:
       - php/test:
           version: '8.0'
           test-command: pipeline
-          
