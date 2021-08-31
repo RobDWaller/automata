@@ -4,6 +4,8 @@ jobs:
   build:
     docker:
       - image: circleci/php:8.0-node-browsers
+    environment:
+      XDEBUG_MODE: coverage
     steps:
       - checkout
       - run: sudo docker-php-ext-install zip
