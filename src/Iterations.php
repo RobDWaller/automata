@@ -59,4 +59,14 @@ class Iterations implements Iterator, Countable
     {
         array_push($this->iterations, $cells);
     }
+
+    public function toJson(): string
+    {
+        return (string) json_encode(
+            array_reduce($this->iterations, function ($carry, $cells) {
+                $carry[] = $cells->toArray();
+                return $carry;
+            }, [])
+        );
+    }
 }
