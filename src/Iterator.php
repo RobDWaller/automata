@@ -17,7 +17,7 @@ class Iterator
     ) {
     }
 
-    public function iterate(int $steps): Cells
+    public function iterateTo(int $steps): Cells
     {
         $count = 0;
 
