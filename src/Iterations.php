@@ -6,7 +6,7 @@ namespace Automata;
 
 use Iterator;
 use Countable;
-use Automata\CellsException;
+use Automata\IterationsException;
 
 /**
  * @implements Iterator<int, Cells>
@@ -58,6 +58,13 @@ class Iterations implements Iterator, Countable
     public function add(Cells $cells): void
     {
         array_push($this->iterations, $cells);
+    }
+
+    public function find(int $key): Cells
+    {
+        return array_key_exists($key, $this->iterations) ?
+            $this->iterations[$key] :
+            throw new IterationsException('Cells could not be found please check the key provided.');
     }
 
     public function toJson(): string

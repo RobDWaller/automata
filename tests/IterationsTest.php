@@ -5,6 +5,7 @@ namespace Tests;
 use PHPUnit\Framework\TestCase;
 use Automata\CellsFactory;
 use Automata\Iterations;
+use Automata\IterationsException;
 use Automata\Cells;
 
 class IterationsTest extends TestCase
@@ -44,5 +45,39 @@ class IterationsTest extends TestCase
             ),
             $iterations->toJson()
         );
+    }
+
+    public function testFind(): void
+    {
+        $iterations = new Iterations();
+
+        $factory = new CellsFactory();
+        $cells1 = $factory->create("10101");
+        $cells2 = $factory->create("01001");
+
+        $iterations->add($cells1);
+        $iterations->add($cells2);
+
+        $cells = $iterations->find(1);
+
+        $this->assertSame(0, $cells->find(0)->getState());
+        $this->assertSame(1, $cells->find(1)->getState());
+        $this->assertSame(0, $cells->find(2)->getState());
+    }
+
+    public function testFindFail(): void
+    {
+        $iterations = new Iterations();
+
+        $factory = new CellsFactory();
+        $cells1 = $factory->create("10101");
+        $cells2 = $factory->create("01001");
+
+        $iterations->add($cells1);
+        $iterations->add($cells2);
+
+        $this->expectException(IterationsException::class);
+        $this->expectExceptionMessage("Cells could not be found please check the key provided.");
+        $iterations->find(2);
     }
 }
