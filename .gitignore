@@ -4,3 +4,4 @@ Dockerfile
 composer.lock
 .phpunit.cache/
 coverage*
+test-report.xml
