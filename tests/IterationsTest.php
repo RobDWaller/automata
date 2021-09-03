@@ -104,4 +104,32 @@ class IterationsTest extends TestCase
 
         $this->assertInstanceOf(Cells::class, $iterations->current());
     }
+
+    public function testKey(): void
+    {
+        $iterations = new Iterations();
+
+        $factory = new CellsFactory();
+        $cells = $factory->create("010101");
+
+        $iterations->add($cells);
+
+        $this->assertSame(0, $iterations->key());
+    }
+
+    public function testNext(): void
+    {
+        $iterations = new Iterations();
+
+        $factory = new CellsFactory();
+        $cells1 = $factory->create("0001011");
+        $cells2 = $factory->create("1101011");
+
+        $iterations->add($cells1);
+        $iterations->add($cells2);
+
+        $iterations->next();
+
+        $this->assertSame(1, $iterations->key());
+    }
 }
