@@ -80,4 +80,28 @@ class IterationsTest extends TestCase
         $this->expectExceptionMessage("Cells could not be found please check the key provided.");
         $iterations->find(2);
     }
+
+    public function testCount(): void
+    {
+        $iterations = new Iterations();
+
+        $factory = new CellsFactory();
+        $cells = $factory->create("11111");
+
+        $iterations->add($cells);
+
+        $this->assertSame(1, $iterations->count());
+    }
+
+    public function testCurrent(): void
+    {
+        $iterations = new Iterations();
+
+        $factory = new CellsFactory();
+        $cells = $factory->create("00010");
+
+        $iterations->add($cells);
+
+        $this->assertInstanceOf(Cells::class, $iterations->current());
+    }
 }
