@@ -77,4 +77,15 @@ class Cells implements Iterator, Countable
     {
         return $key === (count($this->cells) - 1) ? $this->find(0) : $this->find($key + 1);
     }
+
+    /**
+     * @return int[]
+     */
+    public function toArray(): array
+    {
+        return array_reduce($this->cells, function ($carry, $cell) {
+            $carry[] = $cell->getState();
+            return $carry;
+        }, []);
+    }
 }

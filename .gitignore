@@ -3,3 +3,5 @@ docker-compose.yml
 Dockerfile
 composer.lock
 .phpunit.cache/
+coverage*
+test-report.xml
