@@ -22,7 +22,7 @@ class IterationsTest extends TestCase
         $this->assertCount(1, $iterations);
     }
 
-    public function testToJson(): void
+    public function testToArray(): void
     {
         $iterations = new Iterations();
 
@@ -35,15 +35,13 @@ class IterationsTest extends TestCase
         $iterations->add($cells2);
         $iterations->add($cells3);
 
-        $this->assertJsonStringEqualsJsonString(
-            (string) json_encode(
-                [
-                    [1, 1, 1, 0, 1],
-                    [0, 0, 0, 0, 1],
-                    [1, 0, 0, 0, 1],
-                ]
-            ),
-            $iterations->toJson()
+        $this->assertSame(
+            [
+                [1, 1, 1, 0, 1],
+                [0, 0, 0, 0, 1],
+                [1, 0, 0, 0, 1],
+            ],
+            $iterations->toArray()
         );
     }
 

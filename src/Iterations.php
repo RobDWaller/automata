@@ -67,13 +67,14 @@ class Iterations implements Iterator, Countable
             throw new IterationsException('Cells could not be found please check the key provided.');
     }
 
-    public function toJson(): string
+    /**
+     * @return mixed[]
+     */
+    public function toArray(): array
     {
-        return (string) json_encode(
-            array_reduce($this->iterations, function ($carry, $cells) {
-                $carry[] = $cells->toArray();
-                return $carry;
-            }, [])
-        );
+        return array_reduce($this->iterations, function ($carry, $cells) {
+            $carry[] = $cells->toArray();
+            return $carry;
+        }, []);
     }
 }
