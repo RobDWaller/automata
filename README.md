@@ -10,7 +10,7 @@ use Automata\CellsFactory;
 use Automata\RulesFactory;
 use Automata\Iterator;
 
-$$cellsFactory = new CellsFactory();
+$cellsFactory = new CellsFactory();
 $cells = $cellsFactory->create("01010");
 
 $rulesFactory = new RulesFactory();
