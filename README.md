@@ -3,6 +3,26 @@
 
 An Elementary Cellular Automata library for PHP. All credit goes to Stephen Wolfram and Melanie Mitchell.
 
+## Basic Usage
+
+```php
+use Automata\CellsFactory;
+use Automata\RulesFactory;
+use Automata\Iterator;
+
+$$cellsFactory = new CellsFactory();
+$cells = $cellsFactory->create("01010");
+
+$rulesFactory = new RulesFactory();
+$rules = $rulesFactory->create(110);
+
+$iterator = new Iterator(new Iterate(), $cells, $rules);
+
+$iterations = $iterator->iterate(4);
+
+$iterations->toArray();
+```
+
 ## Rules
 
 ```
