@@ -6,6 +6,18 @@ An Elementary Cellular Automata library for PHP. All credit goes to Stephen Wolf
 ## Basic Usage
 
 ```php
+use Automata\Automata;
+
+$automata = new Automata();
+
+$result = $automata->generate(110, 4, '01010');
+
+$result->toArray();
+```
+
+## Advanced Usage
+
+```php
 use Automata\CellsFactory;
 use Automata\RulesFactory;
 use Automata\Iterator;
